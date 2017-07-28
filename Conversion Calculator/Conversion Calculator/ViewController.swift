@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    //ALL CONVERSION FUNCTIONS__________________________________________________
+//ALL CONVERSION FUNCTIONS__________________________________________________
     //Kilometers To Miles - 1km equals 0.621371miles
     func kilometersToMiles(_ kilometers: String) -> String {
         let conversionToMiles: Double = Double(kilometers)!
@@ -38,19 +38,22 @@ class ViewController: UIViewController {
         let FinalAnswerCF = (conversionToFahrenheit * (9/5)) + 32
         return String(FinalAnswerCF ) + "°F"
     }
-    //__________________________________________________________________________
+//__________________________________________________________________________
     
     //Conversion Input/Output
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var conversionOutput: UITextField!
     
+    //Labels to show unit of number
     var outputsDisplayed = ["°F", "°C", "mi", "km"]
     var inputsDisplayed = ["°C", "°F", "km", "mi"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         userInput.text = inputsDisplayed[selection]
         conversionOutput.text = outputsDisplayed[selection]
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -89,9 +92,8 @@ class ViewController: UIViewController {
         }
     }
     
-   
+//Everything for Alert Action Sheet______________________________________________________________
     @IBAction func clickConverterButton(_ sender: UIButton) {
-    
     
     let alert = UIAlertController(title: "Choose Converter", message: " ", preferredStyle: UIAlertControllerStyle.actionSheet)
     
@@ -127,31 +129,36 @@ class ViewController: UIViewController {
         
     self.present(alert, animated: true, completion: nil)
     }
-    
+//_____________________________________________________________________________________________
+
     
     @IBAction func clickClear(_ sender: UIButton) {
         userInput.text = inputsDisplayed[selection]
         conversionOutput.text = outputsDisplayed[selection]
+        NumbersToConvert = "" //actually clears it all out
     }
     
     @IBAction func clickAddSubtract(_ sender: UIButton) {
-        var negPosNumber = Int(NumbersToConvert)
-        negPosNumber = negPosNumber! * -1
-    }
+            NumbersToConvert = "-" + NumbersToConvert
+        }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @IBAction func clickDecimal(_ sender: UIButton) {
+            NumbersToConvert = NumbersToConvert + "."
+        }
 }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
 
